@@ -292,7 +292,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 			if (!string.IsNullOrEmpty(prefix)) sb.Append(prefix);
 			sb.Append(digits);
 			if (!string.IsNullOrEmpty(postfix)) sb.Append(postfix);
-			sb.Append(';');
+			sb.Append("_);");
 
 			#region Negative part
 			switch (arg.NegativeStyle)
@@ -346,8 +346,9 @@ namespace unvell.ReoGrid.IO.OpenXML
 			if (!string.IsNullOrEmpty(prefix)) sb.Append(prefix);
 			sb.Append(digits);
 			if (!string.IsNullOrEmpty(postfix)) sb.Append(postfix);
+            sb.Append(';');
 
-			return sb.ToString();
+            return sb.ToString();
 		}
 
 		private const int BaseUserNumberFormatId = 165;
@@ -1308,6 +1309,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 									break;
 								default:
 								case Core.StyleParentKind.Own:
+                                case Core.StyleParentKind.Range:
 									rgStyle = rgCell.InnerStyle;
 									break;
 							}

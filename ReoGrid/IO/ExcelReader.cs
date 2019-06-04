@@ -1531,7 +1531,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 			return arg;
 		}
 
-		enum NumberFormatParseStatus
+        enum NumberFormatParseStatus
 		{
 			Segment,
 			InString,
@@ -1572,9 +1572,11 @@ namespace unvell.ReoGrid.IO.OpenXML
 						if (pattern.StartsWith("\"$\""))
 						{
 							flag = CellDataFormatFlag.Currency;
+                            string param = pattern.Substring(3);
+                            if (pattern.Length >= 2) { param = patterns[1]; }
 
 							var carg = (CurrencyDataFormatter.CurrencyFormatArgs)ReadNumberFormatArgs(
-								pattern.Substring(3), new CurrencyDataFormatter.CurrencyFormatArgs());
+								param, new CurrencyDataFormatter.CurrencyFormatArgs());
 
 							carg.PrefixSymbol = "$";
 

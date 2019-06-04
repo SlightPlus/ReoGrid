@@ -887,6 +887,8 @@ namespace unvell.ReoGrid.Formula
 				}
 			}
 
+            return false;
+
 			throw new FormulaTypeMismatchException(cell);
 		}
 		#endregion // OR
