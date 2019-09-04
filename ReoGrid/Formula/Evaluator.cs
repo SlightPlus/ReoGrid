@@ -469,309 +469,340 @@ namespace unvell.ReoGrid.Formula
 			string str, str2;
 			int i, i2;
 
-			switch (funNode.Name)
-			{
-				#region Stat
+            switch (funNode.Name)
+            {
+                #region Stat
 
-				case BuiltinFunctionNames.SUM_EN:
-				case BuiltinFunctionNames.SUM_RU:
-					return ExcelFunctions.Sum(cell, GetFunctionArgs(cell, funNode.Children, 1));
+                case BuiltinFunctionNames.SUM_EN:
+                case BuiltinFunctionNames.SUM_RU:
+                    return ExcelFunctions.Sum(cell, GetFunctionArgs(cell, funNode.Children, 1));
 
-				case BuiltinFunctionNames.AVERAGE_EN:
-				case BuiltinFunctionNames.AVERAGE_RU:
-					return ExcelFunctions.Average(cell, GetFunctionArgs(cell, funNode.Children, 1));
+                case BuiltinFunctionNames.AVERAGE_EN:
+                case BuiltinFunctionNames.AVERAGE_RU:
+                    return ExcelFunctions.Average(cell, GetFunctionArgs(cell, funNode.Children, 1));
 
-				case BuiltinFunctionNames.COUNT_EN:
-				case BuiltinFunctionNames.COUNT_RU:
-					return ExcelFunctions.Count(cell, GetFunctionArgs(cell, funNode.Children, 1), includeEmpty: false);
+                case BuiltinFunctionNames.COUNT_EN:
+                case BuiltinFunctionNames.COUNT_RU:
+                    return ExcelFunctions.Count(cell, GetFunctionArgs(cell, funNode.Children, 1), includeEmpty: false);
 
-				case BuiltinFunctionNames.COUNTA_EN:
-				case BuiltinFunctionNames.COUNTA_RU:
-					return ExcelFunctions.Count(cell, GetFunctionArgs(cell, funNode.Children, 1), includeEmpty: true);
+                case BuiltinFunctionNames.COUNTA_EN:
+                case BuiltinFunctionNames.COUNTA_RU:
+                    return ExcelFunctions.Count(cell, GetFunctionArgs(cell, funNode.Children, 1), includeEmpty: true);
 
-				case BuiltinFunctionNames.MIN_EN:
-				case BuiltinFunctionNames.MIN_RU:
-					return ExcelFunctions.Min(cell, GetFunctionArgs(cell, funNode.Children, 1));
+                case BuiltinFunctionNames.MIN_EN:
+                case BuiltinFunctionNames.MIN_RU:
+                    return ExcelFunctions.Min(cell, GetFunctionArgs(cell, funNode.Children, 1));
 
-				case BuiltinFunctionNames.MAX_EN:
-				case BuiltinFunctionNames.MAX_RU:
-					return ExcelFunctions.Max(cell, GetFunctionArgs(cell, funNode.Children, 1));
+                case BuiltinFunctionNames.MAX_EN:
+                case BuiltinFunctionNames.MAX_RU:
+                    return ExcelFunctions.Max(cell, GetFunctionArgs(cell, funNode.Children, 1));
 
-				case BuiltinFunctionNames.SUMIF_EN:
-				case BuiltinFunctionNames.SUMIF_RU:
-					return ExcelFunctions.SumIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
+                case BuiltinFunctionNames.SUMIF_EN:
+                case BuiltinFunctionNames.SUMIF_RU:
+                    return ExcelFunctions.SumIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
 
-				case BuiltinFunctionNames.AVERAGEIF_EN:
-				case BuiltinFunctionNames.AVERAGEIF_RU:
-					return ExcelFunctions.AverageIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
+                case BuiltinFunctionNames.AVERAGEIF_EN:
+                case BuiltinFunctionNames.AVERAGEIF_RU:
+                    return ExcelFunctions.AverageIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
 
-				case BuiltinFunctionNames.COUNTIF_EN:
-				case BuiltinFunctionNames.COUNTIF_RU:
-					return ExcelFunctions.CountIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
+                case BuiltinFunctionNames.COUNTIF_EN:
+                case BuiltinFunctionNames.COUNTIF_RU:
+                    return ExcelFunctions.CountIf(cell, GetFunctionArgs(cell, funNode.Children, 2));
 
-				#endregion // Stat
+                #endregion // Stat
 
-				#region Data
-				case BuiltinFunctionNames.VLOOKUP_EN:
-				case BuiltinFunctionNames.VLOOKUP_RU:
-					return ExcelFunctions.VLookup(cell, GetFunctionArgs(cell, funNode.Children, 3, 4));
+                #region Data
+                case BuiltinFunctionNames.VLOOKUP_EN:
+                case BuiltinFunctionNames.VLOOKUP_RU:
+                    return ExcelFunctions.VLookup(cell, GetFunctionArgs(cell, funNode.Children, 3, 4));
 
-				#endregion // Data
+                #endregion // Data
 
-				#region Conditions
+                #region Conditions
 
-				case BuiltinFunctionNames.IF_EN:
-				case BuiltinFunctionNames.IF_RU:
-					return ExcelFunctions.If(cell, funNode);
+                case BuiltinFunctionNames.IF_EN:
+                case BuiltinFunctionNames.IF_RU:
+                    return ExcelFunctions.If(cell, funNode);
 
-				case BuiltinFunctionNames.AND_EN:
-				case BuiltinFunctionNames.AND_RU:
-					return ExcelFunctions.And(cell, funNode.Children);
+                case BuiltinFunctionNames.AND_EN:
+                case BuiltinFunctionNames.AND_RU:
+                    return ExcelFunctions.And(cell, funNode.Children);
 
-				case BuiltinFunctionNames.OR_EN:
-				case BuiltinFunctionNames.OR_RU:
-					return ExcelFunctions.Or(cell, funNode.Children);
+                case BuiltinFunctionNames.OR_EN:
+                case BuiltinFunctionNames.OR_RU:
+                    return ExcelFunctions.Or(cell, funNode.Children);
 
-				case BuiltinFunctionNames.NOT_EN:
-				case BuiltinFunctionNames.NOT_RU:
-					return ExcelFunctions.Not(cell, funNode.Children[0]);
+                case BuiltinFunctionNames.NOT_EN:
+                case BuiltinFunctionNames.NOT_RU:
+                    return ExcelFunctions.Not(cell, funNode.Children[0]);
 
-				#endregion // Conditions
+                #endregion // Conditions
 
-				#region Address
+                #region Address
 
-				case BuiltinFunctionNames.ROW_EN:
-				case BuiltinFunctionNames.ROW_RU:
-					return ExcelFunctions.Row(cell, funNode.Children);
+                case BuiltinFunctionNames.ROW_EN:
+                case BuiltinFunctionNames.ROW_RU:
+                    return ExcelFunctions.Row(cell, funNode.Children);
 
-				case BuiltinFunctionNames.COLUMN_EN:
-				case BuiltinFunctionNames.COLUMN_RU:
-					return ExcelFunctions.Column(cell, funNode.Children);
+                case BuiltinFunctionNames.COLUMN_EN:
+                case BuiltinFunctionNames.COLUMN_RU:
+                    return ExcelFunctions.Column(cell, funNode.Children);
 
-				case BuiltinFunctionNames.ADDRESS_EN:
-				case BuiltinFunctionNames.ADDRESS_RU:
-					return ExcelFunctions.Address(cell, GetFunctionArgs(cell, funNode.Children, 2));
+                case BuiltinFunctionNames.ADDRESS_EN:
+                case BuiltinFunctionNames.ADDRESS_RU:
+                    return ExcelFunctions.Address(cell, GetFunctionArgs(cell, funNode.Children, 2));
 
-				case BuiltinFunctionNames.INDIRECT_EN:
-				case BuiltinFunctionNames.INDIRECT_RU:
-					return ExcelFunctions.Indirect(cell, GetFunctionArgs(cell, funNode.Children, 1));
+                case BuiltinFunctionNames.INDIRECT_EN:
+                case BuiltinFunctionNames.INDIRECT_RU:
+                    return ExcelFunctions.Indirect(cell, GetFunctionArgs(cell, funNode.Children, 1));
 
-				#endregion // Address
+                #endregion // Address
 
-				#region Math
+                #region Math
 
-				case BuiltinFunctionNames.ABS_EN:
-				//case BuiltinFunctionNames.ABS_RU:
-					return Math.Abs(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.ABS_EN:
+                    //case BuiltinFunctionNames.ABS_RU:
+                    return Math.Abs(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.ROUND_EN:
-				case BuiltinFunctionNames.ROUND_RU:
-					return ExcelFunctions.Round(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
+                case BuiltinFunctionNames.ROUND_EN:
+                case BuiltinFunctionNames.ROUND_RU:
+                    return ExcelFunctions.Round(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
 
-				case BuiltinFunctionNames.CEILING_EN:
-				case BuiltinFunctionNames.CEILING_RU:
-					return ExcelFunctions.Ceiling(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
+                case BuiltinFunctionNames.CEILING_EN:
+                case BuiltinFunctionNames.CEILING_RU:
+                    return ExcelFunctions.Ceiling(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
 
-				case BuiltinFunctionNames.FLOOR_EN:
-				case BuiltinFunctionNames.FLOOR_RU:
-					return ExcelFunctions.Floor(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
+                case BuiltinFunctionNames.FLOOR_EN:
+                case BuiltinFunctionNames.FLOOR_RU:
+                    return ExcelFunctions.Floor(cell, GetFunctionArgs(cell, funNode.Children, 1, 2));
 
-				case BuiltinFunctionNames.SIN_EN:
-				//case BuiltinFunctionNames.SIN_RU:
-					return Math.Sin(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.SIN_EN:
+                    //case BuiltinFunctionNames.SIN_RU:
+                    return Math.Sin(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.COS_EN:
-				//case BuiltinFunctionNames.COS_RU:
-					return Math.Cos(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.COS_EN:
+                    //case BuiltinFunctionNames.COS_RU:
+                    return Math.Cos(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.TAN_EN:
-				//case BuiltinFunctionNames.TAN_RU:
-					return Math.Tan(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.TAN_EN:
+                    //case BuiltinFunctionNames.TAN_RU:
+                    return Math.Tan(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.ASIN_EN:
-				//case BuiltinFunctionNames.ASIN_RU:
-					return Math.Asin(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.ASIN_EN:
+                    //case BuiltinFunctionNames.ASIN_RU:
+                    return Math.Asin(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.ACOS_EN:
-				//case BuiltinFunctionNames.ACOS_RU:
-					return Math.Acos(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.ACOS_EN:
+                    //case BuiltinFunctionNames.ACOS_RU:
+                    return Math.Acos(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.ATAN_EN:
-				//case BuiltinFunctionNames.ATAN_RU:
-					return Math.Atan(GetFunctionNumberArg(cell, funNode.Children));
+                case BuiltinFunctionNames.ATAN_EN:
+                    //case BuiltinFunctionNames.ATAN_RU:
+                    return Math.Atan(GetFunctionNumberArg(cell, funNode.Children));
 
-				case BuiltinFunctionNames.ATAN2_EN:
-				//case BuiltinFunctionNames.ATAN2_RU:
-					#region ATAN2
-					args = GetFunctionArgs(cell, funNode.Children, 2);
-					return (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
-						? (FormulaValue)null : (FormulaValue)Math.Atan2((double)args[0].value, (double)args[1].value);
-				#endregion // ATAN2
+                case BuiltinFunctionNames.ATAN2_EN:
+                    //case BuiltinFunctionNames.ATAN2_RU:
+                    #region ATAN2
+                    args = GetFunctionArgs(cell, funNode.Children, 2);
+                    return (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
+                        ? (FormulaValue)null : (FormulaValue)Math.Atan2((double)args[0].value, (double)args[1].value);
+                #endregion // ATAN2
 
-				case BuiltinFunctionNames.POWER_EN:
-				case BuiltinFunctionNames.POWER_RU:
-					#region POWER
-					args = GetFunctionArgs(cell, funNode.Children, 2);
+                case BuiltinFunctionNames.POWER_EN:
+                case BuiltinFunctionNames.POWER_RU:
+                    #region POWER
+                    args = GetFunctionArgs(cell, funNode.Children, 2);
 
-					if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
-					{
-						throw new FormulaParameterMismatchException(cell);
-					}
+                    if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
+                    {
+                        throw new FormulaParameterMismatchException(cell);
+                    }
 
-					return (FormulaValue)Math.Pow((double)args[0].value, (double)args[1].value);
-					#endregion // POWER
+                    return (FormulaValue)Math.Pow((double)args[0].value, (double)args[1].value);
+                #endregion // POWER
 
-				case BuiltinFunctionNames.EXP_EN:
-				//case BuiltinFunctionNames.EXP_RU:
-					val = (double)GetFunctionArg(cell, funNode.Children, FormulaValueType.Number);
-					return Math.Exp(val);
+                case BuiltinFunctionNames.EXP_EN:
+                    //case BuiltinFunctionNames.EXP_RU:
+                    val = (double)GetFunctionArg(cell, funNode.Children, FormulaValueType.Number);
+                    return Math.Exp(val);
 
-				case BuiltinFunctionNames.LOG_EN:
-				//case BuiltinFunctionNames.LOG_RU:
-					#region LOG
-					args = GetFunctionArgs(cell, funNode.Children, 1, 2);
-					if (args.Length < 2)
-					{
-						if (args[0].type != FormulaValueType.Number)
-						{
-							throw new FormulaParameterMismatchException(cell);
-						}
-						return Math.Log((double)args[0].value);
-					}
-					else
-					{
-						if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
-						{
-							throw new FormulaParameterMismatchException(cell);
-						}
-						return Math.Log((double)args[0].value, (double)args[1].value);
-					}
-					#endregion // LOG
+                case BuiltinFunctionNames.LOG_EN:
+                    //case BuiltinFunctionNames.LOG_RU:
+                    #region LOG
+                    args = GetFunctionArgs(cell, funNode.Children, 1, 2);
+                    if (args.Length < 2)
+                    {
+                        if (args[0].type != FormulaValueType.Number)
+                        {
+                            throw new FormulaParameterMismatchException(cell);
+                        }
+                        return Math.Log((double)args[0].value);
+                    }
+                    else
+                    {
+                        if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
+                        {
+                            throw new FormulaParameterMismatchException(cell);
+                        }
+                        return Math.Log((double)args[0].value, (double)args[1].value);
+                    }
+                #endregion // LOG
 
-				case BuiltinFunctionNames.LOG10_EN:
-				//case BuiltinFunctionNames.LOG10_RU:
-					#region LOG10
-					val = (double)GetFunctionArg(cell, funNode.Children, FormulaValueType.Number);
-					return Math.Log10(val);
-				#endregion // LOG10
+                case BuiltinFunctionNames.LOG10_EN:
+                    //case BuiltinFunctionNames.LOG10_RU:
+                    #region LOG10
+                    val = (double)GetFunctionArg(cell, funNode.Children, FormulaValueType.Number);
+                    return Math.Log10(val);
+                #endregion // LOG10
 
-				case BuiltinFunctionNames.MOD_EN:
-				case BuiltinFunctionNames.MOD_RU:
-					#region MOD
-					args = GetFunctionArgs(cell, funNode.Children, 2);
+                case BuiltinFunctionNames.MOD_EN:
+                case BuiltinFunctionNames.MOD_RU:
+                    #region MOD
+                    args = GetFunctionArgs(cell, funNode.Children, 2);
 
-					if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
-					{
-						throw new FormulaParameterMismatchException(cell);
-					}
+                    if (args[0].type != FormulaValueType.Number || args[1].type != FormulaValueType.Number)
+                    {
+                        throw new FormulaParameterMismatchException(cell);
+                    }
 
-					return (FormulaValue)((double)args[0].value % (double)args[1].value);
-					#endregion // MOD
+                    return (FormulaValue)((double)args[0].value % (double)args[1].value);
+                #endregion // MOD
 
-				#endregion // Math
+                #endregion // Math
 
-				#region Datetime
+                #region Datetime
 
-				case BuiltinFunctionNames.NOW_EN:
-				case BuiltinFunctionNames.NOW_RU:
-					#region NOW
-					if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
-					{
-						cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
-						cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
-						{
-							Format = "yyyy/MM/dd HH:mm",
-							CultureName = "en-US",
-						};
-					}
-					return DateTime.Now;
-					#endregion // NOW
+                case BuiltinFunctionNames.NOW_EN:
+                case BuiltinFunctionNames.NOW_RU:
+                    #region NOW
+                    if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
+                    {
+                        cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
+                        cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
+                        {
+                            Format = "yyyy/MM/dd HH:mm",
+                            CultureName = "en-US",
+                        };
+                    }
+                    return DateTime.Now;
+                #endregion // NOW
 
-				case BuiltinFunctionNames.TODAY_EN:
-				case BuiltinFunctionNames.TODAY_RU:
-					#region TODAY
-					if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
-					{
-						cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
-						cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
-						{
-							Format = "yyyy/MM/dd",
-							CultureName = "en-US",
-						};
-					}
-					return DateTime.Now;
-					#endregion // TODAY
+                case BuiltinFunctionNames.TODAY_EN:
+                case BuiltinFunctionNames.TODAY_RU:
+                    #region TODAY
+                    if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
+                    {
+                        cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
+                        cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
+                        {
+                            Format = "yyyy/MM/dd",
+                            CultureName = "en-US",
+                        };
+                    }
+                    return DateTime.Now;
+                #endregion // TODAY
 
-				case BuiltinFunctionNames.TIME_EN:
-				case BuiltinFunctionNames.TIME_RU:
-					#region TIME
-					args = GetFunctionArgs(cell, funNode.Children, 3);
+                case BuiltinFunctionNames.TIME_EN:
+                case BuiltinFunctionNames.TIME_RU:
+                    #region TIME
+                    args = GetFunctionArgs(cell, funNode.Children, 3);
 
-					if (args[0].type != FormulaValueType.Number
-						|| args[1].type != FormulaValueType.Number
-						|| args[2].type != FormulaValueType.Number)
-					{
-						throw new FormulaParameterMismatchException(cell);
-					}
+                    if (args[0].type != FormulaValueType.Number
+                        || args[1].type != FormulaValueType.Number
+                        || args[2].type != FormulaValueType.Number)
+                    {
+                        throw new FormulaParameterMismatchException(cell);
+                    }
 
-					dt = new DateTime(1900, 1, 1, (int)(double)args[0].value, (int)(double)args[1].value, (int)(double)args[2].value);
+                    dt = new DateTime(1900, 1, 1, (int)(double)args[0].value, (int)(double)args[1].value, (int)(double)args[2].value);
 
-					if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
-					{
-						cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
-						cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
-						{
-							Format = "HH:mm:ss",
-							CultureName = "en-US",
-						};
-					}
+                    if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
+                    {
+                        cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
+                        cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
+                        {
+                            Format = "HH:mm:ss",
+                            CultureName = "en-US",
+                        };
+                    }
 
-					return dt;
-				#endregion // TIME
+                    return dt;
+                #endregion // TIME
 
-				case BuiltinFunctionNames.YEAR_EN:
-				case BuiltinFunctionNames.YEAR_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Year;
+                case BuiltinFunctionNames.YEAR_EN:
+                case BuiltinFunctionNames.YEAR_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Year;
 
-				case BuiltinFunctionNames.MONTH_EN:
-				case BuiltinFunctionNames.MONTH_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Month;
+                case BuiltinFunctionNames.MONTH_EN:
+                case BuiltinFunctionNames.MONTH_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Month;
 
-				case BuiltinFunctionNames.DAY_EN:
-				case BuiltinFunctionNames.DAY_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Day;
+                case BuiltinFunctionNames.DAY_EN:
+                case BuiltinFunctionNames.DAY_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Day;
 
-				case BuiltinFunctionNames.HOUR_EN:
-				case BuiltinFunctionNames.HOUR_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Hour;
+                case BuiltinFunctionNames.HOUR_EN:
+                case BuiltinFunctionNames.HOUR_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Hour;
 
-				case BuiltinFunctionNames.MINUTE_EN:
-				case BuiltinFunctionNames.MINUTE_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Minute;
+                case BuiltinFunctionNames.MINUTE_EN:
+                case BuiltinFunctionNames.MINUTE_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Minute;
 
-				case BuiltinFunctionNames.SECOND_EN:
-				case BuiltinFunctionNames.SECOND_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Second;
+                case BuiltinFunctionNames.SECOND_EN:
+                case BuiltinFunctionNames.SECOND_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Second;
 
-				case BuiltinFunctionNames.MILLISECOND_EN:
-				case BuiltinFunctionNames.MILLISECOND_RU:
-					dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
-					return dt.Millisecond;
+                case BuiltinFunctionNames.MILLISECOND_EN:
+                case BuiltinFunctionNames.MILLISECOND_RU:
+                    dt = (DateTime)GetFunctionArg(cell, funNode.Children, FormulaValueType.DateTime);
+                    return dt.Millisecond;
 
-				case BuiltinFunctionNames.DAYS_EN:
-				case BuiltinFunctionNames.DAYS_RU:
-					args = GetFunctionArgs(cell, funNode.Children, 2);
-					if (args[0].type != FormulaValueType.DateTime || args[1].type != FormulaValueType.DateTime)
-					{
-						throw new FormulaParameterMismatchException(cell);
-					}
-					return ((DateTime)args[0].value - (DateTime)args[1].value).TotalDays;
+                case BuiltinFunctionNames.DAYS_EN:
+                case BuiltinFunctionNames.DAYS_RU:
+                    args = GetFunctionArgs(cell, funNode.Children, 2);
+                    if (args[0].type != FormulaValueType.DateTime || args[1].type != FormulaValueType.DateTime)
+                    {
+                        throw new FormulaParameterMismatchException(cell);
+                    }
+                    return ((DateTime)args[0].value - (DateTime)args[1].value).TotalDays;
+
+                case BuiltinFunctionNames.DATE_EN:
+                    args = GetFunctionArgs(cell, funNode.Children, 3);
+
+                    if (args[0].type != FormulaValueType.Number
+                        || args[1].type != FormulaValueType.Number
+                        || args[2].type != FormulaValueType.Number)
+                    {
+                        throw new FormulaParameterMismatchException(cell);
+                    }
+
+                    if ((int)args[2] == 0)
+                    {
+                        dt = new DateTime((int)args[0], (int)args[1], DateTime.DaysInMonth((int)args[0], (int)args[1]));
+                    }
+                    else
+                    {
+                        dt = new DateTime((int)args[0], (int)args[1], (int)args[2]);
+                    }
+
+                    if (cell.DataFormat == DataFormat.CellDataFormatFlag.General)
+                    {
+                        cell.DataFormat = DataFormat.CellDataFormatFlag.DateTime;
+                        cell.DataFormatArgs = new DataFormat.DateTimeDataFormatter.DateTimeFormatArgs
+                        {
+                            Format = "yyyy/MM/dd",
+                            CultureName = "en-US",
+                        };
+                    }
+
+                    return dt;
 
 				#endregion // Datetime
 

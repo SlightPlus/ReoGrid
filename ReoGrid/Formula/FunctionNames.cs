@@ -114,6 +114,7 @@ namespace unvell.ReoGrid.Formula
 		public const string MILLISECOND_RU = "МИЛЛИСЕКУНДЫ";
 		public const string DAYS_EN = "DAYS";
 		public const string DAYS_RU = "ДНЕЙ";
+        public const string DATE_EN = "DATE";
 
 		public const string LEFT_EN = "LEFT";
 		public const string LEFT_RU = "ЛЕВСИМВ";
