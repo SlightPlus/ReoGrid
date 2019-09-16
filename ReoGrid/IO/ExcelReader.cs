@@ -1573,7 +1573,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 						{
 							flag = CellDataFormatFlag.Currency;
                             string param = pattern.Substring(3);
-                            if (pattern.Length >= 2) { param = patterns[1]; }
+                            if (patterns.Length >= 2) { param = patterns[1]; }
 
 							var carg = (CurrencyDataFormatter.CurrencyFormatArgs)ReadNumberFormatArgs(
 								param, new CurrencyDataFormatter.CurrencyFormatArgs());
