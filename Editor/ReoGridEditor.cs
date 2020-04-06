@@ -765,8 +765,8 @@ namespace unvell.ReoGrid.Editor
 				showDebugInfoToolStripMenuItem.Checked = showDebugFormToolStripButton.Checked;
 			};
 
-			validateBorderSpanToolStripMenuItem.Click += (s, e) => _Debug_Validate_BorderSpan(this.CurrentWorksheet, true);
-			validateMergedRangeToolStripMenuItem.Click += (s, e) => _Debug_Validate_Merged_Cell(this.CurrentWorksheet, true);
+			//validateBorderSpanToolStripMenuItem.Click += (s, e) => _Debug_Validate_BorderSpan(this.CurrentWorksheet, true);
+			//validateMergedRangeToolStripMenuItem.Click += (s, e) => _Debug_Validate_Merged_Cell(this.CurrentWorksheet, true);
 			validateAllToolStripMenuItem.Click += (s, e) => _Debug_Validate_All(this.CurrentWorksheet, true);
 
 			#endregion // Debug Validation Events
@@ -910,66 +910,66 @@ namespace unvell.ReoGrid.Editor
 		/// </summary>
 		/// <param name="showSuccessMsg"></param>
 		/// <returns></returns>
-		bool _Debug_Validate_BorderSpan(Worksheet sheet, bool showSuccessMsg)
-		{
-			bool rs = sheet._Debug_Validate_BorderSpan();
+		//bool _Debug_Validate_BorderSpan(Worksheet sheet, bool showSuccessMsg)
+		//{
+		//	bool rs = sheet._Debug_Validate_BorderSpan();
 
-			if (rs)
-			{
-				if (showSuccessMsg) ShowStatus("Border span validation ok.");
-			}
-			else
-			{
-				ShowError("Border span test failed.");
+		//	if (rs)
+		//	{
+		//		if (showSuccessMsg) ShowStatus("Border span validation ok.");
+		//	}
+		//	else
+		//	{
+		//		ShowError("Border span test failed.");
 
-				if (!showDebugInfoToolStripMenuItem.Checked)
-				{
-					showDebugInfoToolStripMenuItem.PerformClick();
-				}
-			}
+		//		if (!showDebugInfoToolStripMenuItem.Checked)
+		//		{
+		//			showDebugInfoToolStripMenuItem.PerformClick();
+		//		}
+		//	}
 
-			return rs;
-		}
-		bool _Debug_Validate_Merged_Cell(Worksheet sheet, bool showSuccessMsg)
-		{
-			bool rs = sheet._Debug_Validate_MergedCells();
+		//	return rs;
+		//}
+		//bool _Debug_Validate_Merged_Cell(Worksheet sheet, bool showSuccessMsg)
+		//{
+		//	bool rs = sheet._Debug_Validate_MergedCells();
 
-			if (rs)
-			{
-				if (showSuccessMsg) ShowStatus("Merged range validation ok.");
-			}
-			else
-			{
-				ShowError("Merged range validation failed.");
+		//	if (rs)
+		//	{
+		//		if (showSuccessMsg) ShowStatus("Merged range validation ok.");
+		//	}
+		//	else
+		//	{
+		//		ShowError("Merged range validation failed.");
 
-				if (!showDebugInfoToolStripMenuItem.Checked)
-				{
-					showDebugInfoToolStripMenuItem.PerformClick();
-				}
-			}
+		//		if (!showDebugInfoToolStripMenuItem.Checked)
+		//		{
+		//			showDebugInfoToolStripMenuItem.PerformClick();
+		//		}
+		//	}
 
-			return rs;
-		}
-		bool _Debug_Validate_Unmerged_Range(Worksheet sheet, bool showSuccessMsg, RangePosition range)
-		{
-			bool rs = sheet._Debug_Validate_Unmerged_Range(range);
+		//	return rs;
+		//}
+		//bool _Debug_Validate_Unmerged_Range(Worksheet sheet, bool showSuccessMsg, RangePosition range)
+		//{
+		//	bool rs = sheet._Debug_Validate_Unmerged_Range(range);
 
-			if (rs)
-			{
-				if (showSuccessMsg) ShowStatus("Unmerged range validation ok.");
-			}
-			else
-			{
-				ShowError("Unmerged range validation failed.");
+		//	if (rs)
+		//	{
+		//		if (showSuccessMsg) ShowStatus("Unmerged range validation ok.");
+		//	}
+		//	else
+		//	{
+		//		ShowError("Unmerged range validation failed.");
 
-				if (!showDebugInfoToolStripMenuItem.Checked)
-				{
-					showDebugInfoToolStripMenuItem.PerformClick();
-				}
-			}
+		//		if (!showDebugInfoToolStripMenuItem.Checked)
+		//		{
+		//			showDebugInfoToolStripMenuItem.PerformClick();
+		//		}
+		//	}
 
-			return rs;
-		}
+		//	return rs;
+		//}
 		bool _Debug_Validate_All(Worksheet sheet, bool showSuccessMsg)
 		{
 			return _Debug_Validate_All(sheet, showSuccessMsg, RangePosition.EntireRange);
@@ -980,11 +980,11 @@ namespace unvell.ReoGrid.Editor
 		}
 		bool _Debug_Validate_All(Worksheet sheet, bool showSuccessMsg, RangePosition range)
 		{
-			bool rs = _Debug_Validate_BorderSpan(sheet, showSuccessMsg);
-			if (rs) rs = _Debug_Validate_Merged_Cell(sheet, showSuccessMsg);
-			if (rs) rs = _Debug_Validate_Unmerged_Range(sheet, showSuccessMsg, range);
+			//bool rs = _Debug_Validate_BorderSpan(sheet, showSuccessMsg);
+			//if (rs) rs = _Debug_Validate_Merged_Cell(sheet, showSuccessMsg);
+			//if (rs) rs = _Debug_Validate_Unmerged_Range(sheet, showSuccessMsg, range);
 
-			return rs;
+			return true;
 		}
 		bool _Debug_Auto_Validate_All(Worksheet sheet) { return _Debug_Validate_All(sheet, false); }
 		bool _Debug_Auto_Validate_All(Worksheet sheet, RangePosition range) { return _Debug_Validate_All(sheet, range); }

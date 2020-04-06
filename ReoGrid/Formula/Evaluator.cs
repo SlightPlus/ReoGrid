@@ -785,7 +785,8 @@ namespace unvell.ReoGrid.Formula
 
                     if ((int)args[2] == 0)
                     {
-                        dt = new DateTime((int)args[0], (int)args[1], DateTime.DaysInMonth((int)args[0], (int)args[1]));
+                        int adjusted = (int)args[1] - 1;
+                        dt = new DateTime((int)args[0], adjusted, DateTime.DaysInMonth((int)args[0], adjusted));
                     }
                     else
                     {
