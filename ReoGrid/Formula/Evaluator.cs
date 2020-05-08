@@ -279,7 +279,19 @@ namespace unvell.ReoGrid.Formula
 						FormulaValue v1 = Evaluate(workbook, cell, node[0]);
 						FormulaValue v2 = Evaluate(workbook, cell, node[1]);
 
-						if (v1.type != v2.type) return false;
+                        if (v1.type == FormulaValueType.Nil)
+                        {
+                            v1.type = FormulaValueType.String;
+                            v1.value = string.Empty;
+                        }
+
+                        if (v2.type == FormulaValueType.Nil)
+                        {
+                            v2.type = FormulaValueType.String;
+                            v2.value = string.Empty;
+                        }
+
+                        if (v1.type != v2.type) return false;
 
 						switch (v1.type)
 						{

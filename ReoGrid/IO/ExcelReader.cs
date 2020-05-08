@@ -40,6 +40,7 @@ using unvell.ReoGrid.Utility;
 using unvell.ReoGrid.IO.OpenXML.Schema;
 using unvell.ReoGrid.Graphics;
 using unvell.ReoGrid.Drawing;
+using System.Globalization;
 
 namespace unvell.ReoGrid.IO.OpenXML
 {
@@ -47,8 +48,10 @@ namespace unvell.ReoGrid.IO.OpenXML
 
 	internal sealed class ExcelReader
 	{
-		#region Read Stream
-		public static void ReadStream(RGWorkbook rgWorkbook, Stream stream)
+        private static readonly string[] AcceptableDateFormats = { "M/d/yyyy", "yyyy/M/d", "M-d-yyyy", "yyyy-M-d", "M-d-y", "M/d/y" };
+
+        #region Read Stream
+        public static void ReadStream(RGWorkbook rgWorkbook, Stream stream)
 		{
 #if DEBUG
 			Stopwatch sw = Stopwatch.StartNew();
@@ -693,7 +696,16 @@ namespace unvell.ReoGrid.IO.OpenXML
 									if (ssitem.text != null)
 									{
 										rgCell.InnerData = ssitem.text.val;
-										rgCell.DataFormat = CellDataFormatFlag.Text;
+                                        if (rgCell.InnerData != null && DateTime.TryParseExact(rgCell.InnerData.ToString(), AcceptableDateFormats,
+                                            CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateCheck))
+                                        {
+                                            rgCell.InnerData = dateCheck;
+                                            rgCell.DataFormat = CellDataFormatFlag.DateTime;
+                                        }
+                                        else
+                                        {
+                                            rgCell.DataFormat = CellDataFormatFlag.Text;
+                                        }
 									}
 									else if (ssitem.runs != null)
 									{
@@ -732,17 +744,17 @@ namespace unvell.ReoGrid.IO.OpenXML
 							&& int.TryParse(style.numberFormatId, out numFormatId))
 						{
 							rgCell.DataFormat = SetRGSheetDataFormat(rgSheet, rgCell, numFormatId, styles);
+                            if (rgCell.DataFormat == CellDataFormatFlag.DateTime && rgCell.InnerData != null)
+                            {
+                                double days = Convert.ToDouble(rgCell.InnerData) - 1;
+                                if (days >= 60) days--;
+                                rgCell.InnerData = DateTimeDataFormatter.BaseStartDate.AddDays(days);
+                            }
 						}
 					}
+					
+					DataFormatterManager.Instance.FormatCell(rgCell);
 
-					if (rgCell.DataFormat == CellDataFormatFlag.DateTime)
-					{
-						rgCell.Data = DataFormatterManager.Instance.DataFormatters[CellDataFormatFlag.DateTime].FormatCell(rgCell);
-					}
-					else
-					{
-						DataFormatterManager.Instance.FormatCell(rgCell);
-					}
 
 #endregion // Data Format
 

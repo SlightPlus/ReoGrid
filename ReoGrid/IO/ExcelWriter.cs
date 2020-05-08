@@ -484,7 +484,7 @@ namespace unvell.ReoGrid.IO.OpenXML
 
 					switch (dtarg.Format)
 					{
-						case "yyyy/MM/dd": return 14;
+						case "M/d/yyyy": return 14;
 						case "d-MMM-yy": return 15;
 						case "d-MMM": return 16;
 						case "MMM-yy": return 17;
